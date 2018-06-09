@@ -68,7 +68,7 @@ public class ContractAPI {
         EventTradeToken contract = null;
         try {
             contract = EventTradeToken.deploy(getWeb3j(), getCredentials(),
-                    GAS_PRICE, GAS_LIMIT, BigInteger.TEN).send();
+                    GAS_PRICE, GAS_LIMIT).send();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
