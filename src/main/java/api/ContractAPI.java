@@ -9,6 +9,7 @@ import org.web3j.protocol.Web3j;
 import org.web3j.protocol.http.HttpService;
 import ru.qatools.properties.PropertyLoader;
 
+import java.io.File;
 import java.math.BigInteger;
 
 import static org.web3j.tx.gas.DefaultGasProvider.GAS_LIMIT;
@@ -37,8 +38,9 @@ public class ContractAPI {
     public Credentials getCredentials() {
         Credentials credentials = null;
         try {
-            credentials = WalletUtils.loadCredentials(System.getProperty("walletPassword", ""),
-                    System.getProperty("walletSource", ""));
+            String walletSource = new File(getClass().getClassLoader()
+                    .getResource(System.getProperty("walletSource", "")).getFile()).getAbsolutePath();
+            credentials = WalletUtils.loadCredentials(System.getProperty("walletPassword", ""), walletSource);
             log.info("Credentials are loaded");
         } catch (Exception e) {
             log.error(e.getMessage(), e);
