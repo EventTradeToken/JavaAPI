@@ -53,7 +53,7 @@ public class ContractAPI {
     public EventTradeToken getContract(String address) {
         EventTradeToken contract = null;
         try {
-            contract = EventTradeToken.load(config.contractAddress(),
+            contract = EventTradeToken.load(address,
                     getWeb3j(), getCredentials(),
                     GAS_PRICE, GAS_LIMIT);
             log.info("Contract is loaded");
