@@ -3,8 +3,7 @@ import api.EventTradeToken;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.web3j.tuples.generated.Tuple3;
-import org.web3j.tuples.generated.Tuple4;
+import org.web3j.protocol.core.methods.response.TransactionReceipt;
 
 import java.math.BigInteger;
 
@@ -21,7 +20,7 @@ public class ContractAPITest {
         EventTradeToken ett = contractAPI.createContract();
         ett.addProduct(BigInteger.ONE, "T-Shirt", BigInteger.TEN, BigInteger.ONE).send();
         Assert.assertEquals(ett.getProductsCount().send(), BigInteger.ONE);
-        Tuple4<BigInteger, String, BigInteger, BigInteger> product = ett.getProductByIndex(BigInteger.ZERO).send();
+        TransactionReceipt product = ett.getProductByIndex(BigInteger.ONE).send();
         Assert.assertEquals(ett.getProductsCount().send(), BigInteger.ONE);
         ett.newClient("Julia").send();
         Assert.assertEquals(ett.getClientBalance("Julia").send(), BigInteger.valueOf(50l));

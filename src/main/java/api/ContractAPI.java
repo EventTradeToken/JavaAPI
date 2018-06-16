@@ -10,15 +10,13 @@ import org.web3j.protocol.http.HttpService;
 import ru.qatools.properties.PropertyLoader;
 
 import java.io.File;
-import java.math.BigInteger;
 
 import static org.web3j.tx.gas.DefaultGasProvider.GAS_LIMIT;
 import static org.web3j.tx.gas.DefaultGasProvider.GAS_PRICE;
 
 public class ContractAPI {
-    private String net = "ropsten";
     private static final Logger log = LoggerFactory.getLogger(ContractAPI.class);
-
+    private String net = "ropsten";
     private Config config = PropertyLoader.newInstance()
             .populate(Config.class);
 
@@ -38,8 +36,8 @@ public class ContractAPI {
     public Credentials getCredentials() {
         Credentials credentials = null;
         try {
-            String walletSource = new File(getClass().getClassLoader()
-                    .getResource(System.getProperty("walletSource", "")).getFile()).getAbsolutePath();
+            String walletSource = new File(getClass().getClassLoader().
+                    getResource(System.getProperty("walletSource", "")).getFile()).getAbsolutePath();
             credentials = WalletUtils.loadCredentials(System.getProperty("walletPassword", ""), walletSource);
             log.info("Credentials are loaded");
         } catch (Exception e) {
