@@ -10,7 +10,6 @@ import org.web3j.protocol.http.HttpService;
 import ru.qatools.properties.PropertyLoader;
 
 import java.io.File;
-import java.math.BigInteger;
 
 import static org.web3j.tx.gas.DefaultGasProvider.GAS_LIMIT;
 import static org.web3j.tx.gas.DefaultGasProvider.GAS_PRICE;
@@ -56,7 +55,7 @@ public class ContractAPI {
         try {
             contract = EventTradeToken.load(address,
                     getWeb3j(), getCredentials(),
-                    GAS_PRICE, GAS_LIMIT.multiply(BigInteger.TEN));
+                    GAS_PRICE, GAS_LIMIT);
             log.info("Contract is loaded");
         } catch (Exception e) {
             log.error(e.getMessage(), e);
